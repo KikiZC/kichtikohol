@@ -1,16 +1,18 @@
 import re
 import datetime
 
-recepty = "Sem napište svoje recepty"
+recepty = "pivo, lezaks"
+obchod_inv_cesta = "Sem zadejte cestu k souboru inventáře obchodu"
+ja_inv_cesta = "Sem zadejte cestu k souboru vašeho inventáře"
 
 ja_obchod = int(input("Muj inv nebo v obchodě? (1/2)  "))
 
 if ja_obchod == 1:
-    with open("C:/Users/kikiz/Desktop/kuchtikohol/ja.txt", "r") as file:
+    with open(ja_inv_cesta, "r") as file:
         jainv = file.readlines()
     print(jainv)
 elif ja_obchod == 2:
-    with open("C:/Users/kikiz/Desktop/kuchtikohol/obchod.txt", "r") as file:
+    with open(obchod_inv_cesta, "r") as file:
         obchodinv = file.readlines()
     print(obchodinv)
 
@@ -20,7 +22,7 @@ jmeno = "Krasnaya Zavodskaya Destilerka"
 datum = datetime.date.today()
 
 if zapis == 1:
-    with open("cesta k vasemu inventáři (soubor typu txt)", "r") as file:
+    with open(ja_inv_cesta, "r") as file:
         jainv = file.readlines()
     kdo_co = input(f"Co se poslalo do obchodu? ({recepty})  ")
     kolik = int(input("Kolik?  "))
@@ -31,12 +33,12 @@ if zapis == 1:
             jainv[i] = f"{kdo_co} = {nova_hodnota}\n"
             break
     # Uložení změněných dat zpět do souboru
-    with open("cesta k vasemu inventáři (soubor typu txt)", "w") as file:
+    with open(ja_inv_cesta, "w") as file:
         file.writelines(jainv)
 elif zapis == 2:
-    with open("cesta k vasemu inventáři (soubor typu txt)", "r") as file:
+    with open(ja_inv_cesta, "r") as file:
         jainv = file.readlines()
-    with open("cesta k obchodnímu inventáři (soubor typu txt)", "r") as file:
+    with open(obchod_inv_cesta, "r") as file:
         obchodinv = file.readlines()
     kdo_co = input(f"Co se dalo odemě do obchodu? ({recepty})  ")
     kolik = int(input("Kolik?  "))
@@ -60,13 +62,13 @@ elif zapis == 2:
     print(f"Datum ({datum})")
     print("-------------------------------------------")
     # Uložení změněných dat zpět do souboru
-    with open("cesta k vasemu inventáři (soubor typu txt)", "w") as file:
+    with open(ja_inv_cesta, "w") as file:
         file.writelines(jainv)
     # Uložení změněných dat zpět do souboru
-    with open("cesta k obchodnímu inventáři (soubor typu txt)", "w") as file:
+    with open(obchod_inv_cesta, "w") as file:
         file.writelines(obchodinv)
 elif zapis == 3:
-    with open("cesta k obchodnímu inventáři (soubor typu txt)", "r") as file:
+    with open(obchod_inv_cesta, "r") as file:
         obchodinv = file.readlines()
     kdo_co = input(f"Co se prodalo z obchodu? ({recepty})  ")
     kolik = int(input("Kolik?  "))
@@ -77,5 +79,7 @@ elif zapis == 3:
             obchodinv[i] = f"{kdo_co} = {nova_hodnota}\n"
             break
     # Uložení změněných dat zpět do souboru
-    with open("cesta k obchodnímu inventáři (soubor typu txt)", "w") as file:
+    with open(obchod_inv_cesta, "w") as file:
         file.writelines(obchodinv)
+
+input("kliknutim zavres")
